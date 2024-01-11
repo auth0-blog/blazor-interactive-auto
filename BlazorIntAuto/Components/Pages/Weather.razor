@@ -6,6 +6,7 @@
 
 <h1>Weather</h1>
 
+<p>Hello @Username!</p>
 <p>This component demonstrates showing data.</p>
 
 @if (forecasts == null)
@@ -39,6 +40,10 @@ else
 
 @code {
     private WeatherForecast[]? forecasts;
+    [CascadingParameter]
+    private Task<AuthenticationState>? authenticationState { get; set; }
+
+    private string Username = "";
 
     protected override async Task OnInitializedAsync()
     {
@@ -53,6 +58,13 @@ else
             TemperatureC = Random.Shared.Next(-20, 55),
             Summary = summaries[Random.Shared.Next(summaries.Length)]
         }).ToArray();
+
+        if (authenticationState is not null)
+        {
+          var state = await authenticationState;
+
+          Username = state?.User?.Identity?.Name ?? string.Empty;
+        }
     }
 
     private class WeatherForecast
