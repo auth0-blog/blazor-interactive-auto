@@ -10,7 +10,7 @@ To run the Blazor Web application:
 
 1. Move to the `BlazorIntAuto` folder 
 2. Add your Auth0 credentials to the `appsettings.json` configuration file.
-3. Type `dotnet run` in a terminal window.
+3. Type `dotnet run --launch-profile https` in a terminal window.
 4. Point your browser to `https://localhost:7255`.
 
 ## Requirements:
