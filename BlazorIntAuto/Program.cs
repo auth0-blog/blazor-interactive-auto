@@ -49,10 +49,10 @@ app.MapGet("/Account/Login", async (HttpContext httpContext, string returnUrl = 
   await httpContext.ChallengeAsync(Auth0Constants.AuthenticationScheme, authenticationProperties);
 });
 
-app.MapGet("/Account/Logout", async (HttpContext httpContext, string redirectUri = "/") =>
+app.MapGet("/Account/Logout", async (HttpContext httpContext) =>
 {
   var authenticationProperties = new LogoutAuthenticationPropertiesBuilder()
-          .WithRedirectUri(redirectUri)
+          .WithRedirectUri("/")
           .Build();
 
   await httpContext.SignOutAsync(Auth0Constants.AuthenticationScheme, authenticationProperties);
