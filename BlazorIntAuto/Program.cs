@@ -40,10 +40,10 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseAntiforgery();
 
-app.MapGet("/Account/Login", async (HttpContext httpContext, string redirectUri = "/") =>
+app.MapGet("/Account/Login", async (HttpContext httpContext, string returnUrl = "/") =>
 {
   var authenticationProperties = new LoginAuthenticationPropertiesBuilder()
-          .WithRedirectUri(redirectUri)
+          .WithRedirectUri(returnUrl)
           .Build();
 
   await httpContext.ChallengeAsync(Auth0Constants.AuthenticationScheme, authenticationProperties);
